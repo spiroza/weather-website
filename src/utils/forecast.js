@@ -8,7 +8,8 @@ const forecast = (lat, long, callback) => {
         } else if (body.error) {
             callback('Unable to get weather for location.  Please try again.', undefined);
         } else {
-            callback(undefined, `The temperature is ${body.current.temperature}.  It feels like ${body.current.feelslike}.`);
+            const windDirection = body.current.wind_degree.toString().padStart(3, '0');
+            callback(undefined, `The temperature is ${body.current.temperature}.  It feels like ${body.current.feelslike}.  Wind is ${windDirection} at ${body.current.wind_speed} knots.`);
         }
     });
 }
